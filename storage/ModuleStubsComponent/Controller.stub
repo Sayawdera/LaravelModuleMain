@@ -1,0 +1,87 @@
+<?php
+
+namespace DummyControllerSpace;
+
+use Throwable;
+use Modules\ModelPath\Model\ModelName;
+use Modules\ServicePath\Service\ServiceNameService;
+use Illuminate\Database\Eloquent\{Builder, Collection};
+use Modules\RequestPathName\Request\{StoreRequestClassName, UpdateRequestClassName};
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Modules\ResNa\DummyClassName\Resources\DummyClassNameResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+
+/**
+ * Class DummyControllerClassName
+ * @package  App\Http\Controllers
+ */
+class DummyControllerClassNameController extends Controller
+{
+    /**
+     * @var WMOptService
+     */
+    private ServiceNameService $service;
+
+     /**
+      * @param WMOptService $service
+      */
+    public function __construct(ServiceNameService $service)
+    {
+        $this->service = $service;
+    }
+
+    /**
+    * @param Request $request
+    * @return LengthAwarePaginator|Collection
+    * @throws Throwable
+    */
+    public function index(Request $request): AnonymousResourceCollection
+    {
+        return DummyClassNameResource::collection( $this->service->paginatedList( $request->all() ) );
+    }
+
+    /**
+     * @param UpdateWMOptRequest $request
+     * @return array|Builder|Collection|WMOpt
+     * @throws Throwable
+     */
+    public function store(StoreRequestClassName $request): array |Builder|Collection|SwaggerName
+    {
+        return $this->service->createModel($request->validated('data'));
+
+    }
+
+    /**
+     * @param $wMOpts
+     * @return array|Builder|Collection|WMOpt
+     * @throws Throwable
+     */
+    public function show($swaggernameId): DummyClassNameResource
+    {
+        return new DummyClassNameResource( $this->service->getModelById( $swaggernameId ) );
+    }
+
+    /**
+     * @param StoreWMOptRequest $request
+     * @param int $wMOpts
+     * @return array|WMOpt|Collection|Builder
+     * @throws Throwable
+     */
+    public function update(UpdateRequestClassName $request, int $swaggernameId): array |SwaggerName|Collection|Builder
+    {
+        return $this->service->updateModel($request->validated('data'), $swaggernameId);
+
+    }
+
+    /**
+     * @param int $wMOpts
+     * @return array|Builder|Collection|WMOpt
+     * @throws Throwable
+     */
+    public function destroy(int $swaggernameId): array|Builder|Collection|SwaggerName
+    {
+        return $this->service->deleteModel($swaggernameId);
+    }
+}

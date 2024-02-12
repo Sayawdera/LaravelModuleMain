@@ -1,0 +1,21 @@
+<?php
+
+namespace Modules\NameMODF\Model;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\BaseModel;
+use Spatie\Translatable\HasTranslations;
+
+
+class ModelClass extends BaseModel
+{
+    use HasFactory, HasTranslations;
+
+    protected $table = 'Tables';
+    protected $fillable = [];
+    protected $hidden = [];
+    protected $casts = [];
+    public array $translatable = [];
+
+
+}
